@@ -1,0 +1,174 @@
+@use './variables' as va;
+@use './mixins' as mix;
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora&display=swap');
+
+:root {
+    --backdrop: #000000c2;
+    --dark-400: #{$dark-400};
+    --dark-500: #{$dark-500};
+    --dark-700: #{$dark-700};
+    --dark-900: #{$dark-900};
+    --error: #{$error};
+    --gray-100: #{$gray-100};
+    --gray-200: #{$gray-200};
+    --gray-300: #{$gray-300};
+    --gray-400: #{$gray-400};
+    --gray-500: #{$gray-500};
+    --main: #{$primary};
+    --secondary: #{$secondary};
+    --snow: #{$snow};
+    --snow-100: #f6f7f8;
+    --snow-200: #{$snow-200};
+    --snow-300: #{$snow-300};
+}
+
+:root {
+    --around: space-around;
+    --bold: 2px;
+    --bolder: 3px;
+    --border: 1px solid #0000001a;
+    --border-bold: 2px solid var(--dark-400);
+    --border-bold-dark: 2px solid var(--dark-400);
+    --border-dark: 1px solid var(--dark-400);
+    --border-focus: 1px solid var(--main);
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 900px; 
+    --breakpoint-lg: 1200px;
+    --breakpoint-xlg: 1536px;
+    --clear: transparent;
+    --dw: calc(100% - var(--space-wide) * 2);
+    --ease-100: 100ms ease-in-out;
+    --ease-200: 200ms ease-in-out;
+    --ease-300: 300ms ease-in-out;
+    --ease-400: 400ms ease-in-out;
+    --ease-500: 500ms ease-in-out;
+    --even: space-evenly;
+    --gap-xs: .5rem;
+    --gap-sm: .75rem;
+    --gap-md: #{$space};
+    --gap-lg: 2rem;
+    --gap-max: 5rem;
+    --gradient-color :#f6f0ea;
+    --gradient: linear-gradient(60deg, var(--secondary) 0%, var(--main) 74%);
+    --main-bar: #{$nh};
+    --match: inherit;
+    --max: 100%;
+    --max-x: 100vw;
+    --max-y: 100vh;
+    --radius-xs: .25rem;
+    --radius-sm: .5rem;
+    --radius-md: .75rem;
+    --radius-max: 50px;
+    --round: 50%;
+    --shadow: #{$bs};
+    --text-xs: 10px;
+    --text-sm: 12px;
+    --text-md: 13px;
+    --text-base: 15px;
+    --text-gradient: linear-gradient(315deg, #0abcf9 0%, #2d69d2 74%);
+    --text-gradient-color: #2876f9;
+    --thin: 1px;
+    --spaced: space-between;
+    --zoom: scale(0);
+    --zoom-100: scale(1);
+    --zoom-200: scale(2);
+    --zoom-300: scale(3);
+
+}
+
+html, 
+body {
+    width: 100%;
+    height: 100%;
+    min-height: 360px;
+    @include nospace;
+    color: var(--dark-900);
+    background: var(--gray-100);
+    @include mix.basefont;
+    font: {
+        size: var(--text-base);
+        weight: 300;
+    }
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    @media (prefers-color-scheme: dark){
+        color: var(--gray-300);
+        background: var(--dark-700);
+    }
+}
+
+button {
+    position: relative;
+    align-items: center;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    font: {
+        size: inherit;
+        family: inherit;
+    }
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+form {
+    margin: 0;
+    padding: 0;
+}
+
+input, select, textarea {
+    border: none;
+    outline: none;
+    background: none;
+    @include mix.basefont;
+
+    &:focus {
+        outline: none;
+        border: none;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    @include mix.nospace;
+}
+
+p, pre, small, span {
+    display: inline-block;
+    @include mix.nospace;
+    line-height: 20px;
+}
+
+ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    @include mix.nospace;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+

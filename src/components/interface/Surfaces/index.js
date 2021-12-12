@@ -1,0 +1,1 @@
+export { Card, CardMain } from './Card/Card.styles'

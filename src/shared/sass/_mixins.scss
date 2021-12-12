@@ -1,0 +1,26 @@
+@use './variables' as va;
+
+@mixin basefont {
+    font: { family: -apple-system, BlinkMacSystemFont, 'Inter', 'Sora', 'Segoe UI', 'Roboto', sans-serif;
+    }
+}
+
+@mixin nospace {
+    margin: 0;
+    padding: 0;
+}
+
+@mixin space {
+    padding: 0 1.25rem;
+    margin: 0 auto;
+}
+
+@mixin column {
+    flex-direction: column;
+}
+
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
