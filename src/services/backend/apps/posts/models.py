@@ -3,7 +3,7 @@ from PIL import Image
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
-
+from apps.users.models import User
 
 class Post(models.Model):
     class IntervalChoices(models.TextChoices):
@@ -20,7 +20,7 @@ class Post(models.Model):
         SNR = 'Senior', _('Senior')
         EPT = 'Expert', _('Expert')
         
-    class EnvironmentChoices(models.TextChoices):
+    class WorkplaceChoices(models.TextChoices):
         NON = 'Not Specified', _('Not Specified')
         RMT = 'Remote', _('Remote')
         OFC = 'Office', _('Office')
@@ -44,7 +44,9 @@ class Post(models.Model):
         CST = 'Construction', _('Construction')
         NON = 'None', _('None')
         PCP = 'Computer Programming', _('Computer Programming')
-
+        
+        
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=55)
     description = models.TextField(max_length=2000, null=True, blank=True)
     location = models.CharField(max_length=255, blank=True)
@@ -73,12 +75,11 @@ class Post(models.Model):
         choices=ExpertiseChoices.choices,
         default=ExpertiseChoices.JNR,
     )
-    tech = models.TextField(max_length=995, blank=True)
-    environment = models.CharField(
+    workplace = models.CharField(
         max_length=255,
         blank=True,
-        choices=EnvironmentChoices.choices,
-        default=EnvironmentChoices.NON,
+        choices=WorkplaceChoices.choices,
+        default=WorkplaceChoices.NON,
     )
     mode = models.CharField(
         max_length=255,
@@ -99,3 +100,19 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class Tech(models.Model):
+    post = models.ForeignKey(
+        Post, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name="tech")
+    name = models.CharField(max_length=255, blank=True)
+    
+    class Meta:
+        verbose_name = 'tech'
+        verbose_name_plural = 'tech'
+
+    def __str__(self):
+        return self.name
+        

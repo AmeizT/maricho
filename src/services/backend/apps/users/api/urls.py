@@ -10,7 +10,7 @@ from .views import UserView, bookmarks_add_view, list_bookmarks, user_location
 #     router = SimpleRouter()
 
 router = DefaultRouter()
-router.register('users', UserView, basename="user")
+router.register('users', UserView, basename="users")
 urlpatterns = router.urls
 
 urlpatterns = [

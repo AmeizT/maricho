@@ -4,8 +4,6 @@ from rest_framework.fields import CharField
 from apps.users.models import User, Account
 from django import forms
 from django.contrib.auth.hashers import check_password
-from djoser.serializers import UserCreateSerializer
-
 
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,8 +11,7 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
         
-
-class UserSerializer(UserCreateSerializer):
+class UserSerializer(serializers.ModelSerializer):
     password = CharField(
         style={'input_type': 'password'}
     )
@@ -36,7 +33,7 @@ class UserSerializer(UserCreateSerializer):
             'password',
             'password2',
             'is_admin',
-            'created_at',
+            'created',
             'account',
         )
         depth = 1
@@ -49,6 +46,7 @@ class UserSerializer(UserCreateSerializer):
         user = User.objects.create_user(
             name=validated_data['name'],
             surname=validated_data['surname'],
+            username=validated_data['surname'],
             email=validated_data['email'],
         )
 
